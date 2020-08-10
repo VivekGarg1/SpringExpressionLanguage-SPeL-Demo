@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="book1" class="com.home.model.Book" p:bookId="1" p:bookName="TOC">
+    </bean>
+    
+    <bean id="book2" class="com.home.model.Book" p:bookId="2" p:bookName="Compiler">
+    </bean>
+    
+    <bean  id="bookCollection" class="com.home.model.BookCollection">
+    <property name="bookList">
+    <list>
+    <ref bean="book1"/>
+    <ref bean="book2"/>
+    </list>
+    </property>
+    </bean>
+    
+    <bean  id="bookLibrary" class="com.home.model.BookLibrary" >
+    <property name="allBooks" value="#{bookCollection.bookList}"></property>
+    <property name="getFirstBook" value="#{bookCollection.getFirstBook()}"></property>
+    </bean>
+ 
+    </beans>
