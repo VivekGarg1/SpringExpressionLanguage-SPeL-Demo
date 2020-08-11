@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="studentInfo1" class="com.home.model.StudentInfo" p:stuName="Vivek Garg"
+    p:marks="10">
+    </bean>
+    
+    <bean id="studentInfo2" class="com.home.model.StudentInfo" p:stuName="Prabhat"
+    p:marks="80">
+    </bean>
+    
+    <bean id="studentInfo3" class="com.home.model.StudentInfo" p:stuName="Paras"
+    p:marks="85">
+    </bean>
+    
+    <bean id="studentInfo4" class="com.home.model.StudentInfo" p:stuName="Shubham"
+    p:marks="90">
+    </bean>
+    
+    <bean id="studentList" class="java.util.ArrayList" >
+    <constructor-arg>
+    <list>
+    <ref bean="studentInfo1"/>
+    <ref bean="studentInfo2"/>
+    <ref bean="studentInfo3"/>
+    <ref bean="studentInfo4"/>
+    </list>
+    </constructor-arg>
+    </bean>
+    
+    <bean id="studentListAccessor" class="com.home.model.StudentListAccessor" 
+       p:thirdStudentInList="#{studentList[2]}" 
+       p:failedStudent="#{studentList.?[marks lt 30]}"
+       p:studentNames="#{studentList.![stuName]}">
+    </bean>
+    
+    
+ 
+    </beans>

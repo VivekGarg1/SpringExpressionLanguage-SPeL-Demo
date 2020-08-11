@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="markSheet" class="com.home.model.MarkSheet" p:studentName="Vivek Garg" 
+    p:marksInMath="10"  p:marksInPhysics="90" p:marksInChemestry="65">
+    </bean>
+    
+    <bean id="examinationResult" class="com.home.model.ExaminationResult" 
+       p:hasPassed="#{markSheet.marksInMath>30 and markSheet.marksInPhysics>30 and markSheet.marksInChemestry>30}" 
+       p:resultMessage="#{markSheet.marksInMath>30 and markSheet.marksInPhysics>30 and markSheet.marksInChemestry>30?passedMessage:failedMessage}"> 
+    </bean>
+    
+    <bean id="passedMessage" class="java.lang.String">
+    <constructor-arg>
+    <value>Congratulations:You have passed.</value>
+    </constructor-arg>
+    </bean>
+    <bean id="failedMessage" class="java.lang.String">
+    <constructor-arg>
+    <value>Sorry:You have failed.</value>
+    </constructor-arg>
+    </bean>
+ 
+    </beans>
